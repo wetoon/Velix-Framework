@@ -196,12 +196,16 @@ class Velix {
                                 continue;
                             }
                         }
-                        if ( array_key_exists( $name, $params ) ) {
+                        if ( $name === 'req' || $name === 'request' ) {
+                            $args[] = $req;
+                        } elseif ( $name === 'res' || $name === 'response' ) {
+                            $args[] = $res;
+                        } elseif ( array_key_exists($name, $params) ) {
                             $args[] = $params[$name];
                         } else {
                             $args[] = null;
                         }
-                    }                    
+                    }
 
                     $result = $reflect->invokeArgs( $args );
 
