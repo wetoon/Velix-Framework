@@ -27,15 +27,17 @@ DirectoryIndex public/app.php
 
 RewriteEngine On
 
-# Serve existing files (CSS, JS, images, etc.)
+RewriteCond %{REQUEST_URI} ^/public/(.*)$
+RewriteCond %{DOCUMENT_ROOT}/public/%1 -f
+RewriteCond %1 !\.php$ [NC]
+RewriteRule ^public/(.*)$ /%1 [L,R=301]
+
 RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
 RewriteRule ^ public%{REQUEST_URI} [L]
 
-# Redirect all other requests to app.php
-RewriteCond %{DOCUMENT_ROOT}/public/app.php -f
 RewriteRule ^ public/app.php [L]
 
-php_flag display_errors on
+# php_flag display_errors on
 ```
 
 🧩 **Explanation:**
@@ -148,3 +150,4 @@ fetch('/api/hello')
 ---
 
 © 2025 Velix — MIT Licensed
+
