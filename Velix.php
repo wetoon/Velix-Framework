@@ -185,18 +185,23 @@ class Velix {
 
                     foreach ( $reflect->getParameters() as $p ) {
                         $name = $p->getName();
-                        $type = $p->getClass();
-
-                        if ( $type && $type->getName() === 'Request' ) {
-                            $args[] = $req;
-                        } elseif ( $type && $type->getName() === 'Response' ) {
-                            $args[] = $res;
-                        } elseif ( array_key_exists( $name, $params ) ) {
+                        $type = $p->getType();
+                        if ( $type && !$type->isBuiltin() ) {
+                            $typeName = $type->getName();
+                            if ( $typeName === 'Request' ) {
+                                $args[] = $req;
+                                continue;
+                            } elseif ( $typeName === 'Response' ) {
+                                $args[] = $res;
+                                continue;
+                            }
+                        }
+                        if ( array_key_exists( $name, $params ) ) {
                             $args[] = $params[$name];
                         } else {
                             $args[] = null;
                         }
-                    }
+                    }                    
 
                     $result = $reflect->invokeArgs( $args );
 
