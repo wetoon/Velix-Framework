@@ -30,16 +30,20 @@
     <section class="mb-12">
       <h2 class="text-2xl font-semibold mb-4">⚙️ .htaccess Configuration</h2>
       <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>DirectoryIndex public/app.php
+DirectoryIndex public/app.php
 
 RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^/public/(.*)$
+RewriteCond %{DOCUMENT_ROOT}/public/%1 -f
+RewriteCond %1 !\.php$ [NC]
+RewriteRule ^public/(.*)$ /%1 [L,R=301]
 
 RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
 RewriteRule ^ public%{REQUEST_URI} [L]
 
-RewriteCond %{DOCUMENT_ROOT}/public/app.php -f
 RewriteRule ^ public/app.php [L]
-
-php_flag display_errors on</code></pre>
+      </code></pre>
     </section>
 
     <section class="mb-12">
@@ -86,3 +90,4 @@ $app->dispatch();</code></pre>
   </main>
 </body>
 </html>
+
