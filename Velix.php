@@ -151,6 +151,22 @@ class Velix {
     public function post( $path, $handler ) {
         $this->handlerRouter( 'POST', $path, $handler );
     }
+    
+    public function put( $path, $handler ) {
+        $this->handlerRouter( 'PUT', $path, $handler );
+    }
+
+    public function head( $path, $handler ) {
+        $this->handlerRouter( 'HEAD', $path, $handler );
+    }
+
+    public function delete( $path, $handler ) {
+        $this->handlerRouter( 'DELETE', $path, $handler );
+    }
+
+    public function patch( $path, $handler ) {
+        $this->handlerRouter( 'PATCH', $path, $handler );
+    }
 
     private function handlerRouter( $method, $path, $handler ) {
         $route   = trim( $path, " \t\n\r/" );
@@ -233,3 +249,4 @@ class Velix {
 }
 
 ?>
+
