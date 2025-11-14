@@ -126,10 +126,7 @@ $velix->get('/api', function (Response $res) {
 ```
 
 ## Static Files
-Place static files (e.g., `index.html`, CSS, JS) in the `public` directory. The `.htaccess` configuration ensures they are served directly, while dynamic routes are handled by `app.php`.
-Example:
-- `public/index.html` → Accessible at `http://your-site/`
-- `public/style.css` → Accessible at `http://your-site/style.css`
+**Static File Serving**:Automatically serves static files (e.g., HTML, CSS, JS) from the public directory, optimized for modern frontend frameworks like React, Vue, or Angular, enabling seamless integration and rapid development.
 
 ## Error Handling
 If no route matches, Velix serves `public/index.html` (if it exists) or returns a `404 Not Found` response.
@@ -142,3 +139,4 @@ If no route matches, Velix serves `public/index.html` (if it exists) or returns 
 
 ## License
 Velix is open-source under the MIT License.
+
