@@ -1,93 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Velix PHP Framework Docs</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    code { background: transparent; padding: 0.25rem 0.5rem; border-radius: 0.25rem; }
-  </style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Velix PHP Framework</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<style>
+		@import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap);
+		*, *::after, *::before {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.container {
+			height: 100vh;
+			display: flex;
+			font-weight: 400;
+			font-style: normal;
+			align-items: center;
+			justify-content: center;
+			font-optical-sizing: auto;
+			font-family: "Inter", sans-serif;
+		}
+		.highlight {
+			padding: 2px 8px;
+			border-radius: 4px;
+			background-color: rgba(220,220,220,0.5);
+		}
+		figure h1 {
+			padding: 1rem 0;
+		}
+		figure figcaption {
+			padding: 4px 0;
+		}
+		figure a {
+			color: black;
+			margin-top: 1rem;
+			border-radius: 16px;
+			display: inline-block;
+			text-decoration: none;
+			padding: 0.5rem 1.5rem;
+			border: 1px solid rgb(140, 140, 140);
+		}
+	</style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <header class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-12 text-center shadow-lg">
-    <h1 class="text-4xl font-bold">Velix PHP Framework</h1>
-    <p class="text-lg mt-2 opacity-90">A lightweight PHP microframework for modern frontend apps</p>
-  </header>
-
-  <main class="max-w-4xl mx-auto px-6 py-12">
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">📦 Project Structure</h2>
-      <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>.
-├── Velix.php
-└── public/
-    ├── app.php
-    └── index.html</code></pre>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">⚙️ .htaccess Configuration</h2>
-      <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>DirectoryIndex public/app.php
-DirectoryIndex public/app.php
-
-RewriteEngine On
-
-RewriteCond %{REQUEST_URI} ^/public/(.*)$
-RewriteCond %{DOCUMENT_ROOT}/public/%1 -f
-RewriteCond %1 !\.php$ [NC]
-RewriteRule ^public/(.*)$ /%1 [L,R=301]
-
-RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
-RewriteRule ^ public%{REQUEST_URI} [L]
-
-RewriteRule ^ public/app.php [L]
-      </code></pre>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">🚀 Getting Started</h2>
-      <ol class="list-decimal list-inside space-y-2">
-        <li>Place your built frontend files (React, Vue, Svelte, etc.) inside <code>public/</code>.</li>
-        <li>Define your backend routes in <code>public/app.php</code>.</li>
-        <li>Velix will automatically handle routes and serve your frontend seamlessly.</li>
-      </ol>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">🧩 Example</h2>
-      <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;?php
-require __DIR__ . '/../Velix.php';
-
-$app = new Velix();
-
-$app->get('hello/{name}', function(Request $req, Response $res, $name) {
-    return [ 'message' =&gt; "Hello, $name!" ];
-});
-
-$app->post('user', function(Request $req, Response $res) {
-    $username = $req->input('username');
-    return [ 'created' =&gt; $username ];
-});
-
-$app->dispatch();</code></pre>
-    </section>
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">🍪 Cookies Example</h2>
-      <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>$res-&gt;cookie('session', '123abc', [
-  'expire' =&gt; time() + 3600,
-  'path' =&gt; '/',
-  'secure' =&gt; true,
-  'httpOnly' =&gt; true,
-  'sameSite' =&gt; 'Strict'
-]);</code></pre>
-    </section>
-
-    <section class="text-center border-t pt-6 text-sm text-gray-500">
-      <p>Made with ❤️ for simplicity. &copy; 2025 Velix Framework</p>
-    </section>
-  </main>
+<body class="container">
+	<figure>
+		<h1>Velix PHP Framework</h1>
+		<figcaption>1. Get started by editing <span class="highlight">public/app.php</span>.</figcaption>
+		<figcaption>2. Save and see your changes instantly.</figcaption>
+		<a href="https://github.com/wetoon/Velix-Framework">Read our docs</a>
+	</figure>
 </body>
 </html>
-
