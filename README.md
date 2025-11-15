@@ -24,7 +24,7 @@ DirectoryIndex public/app.php
 RewriteEngine On
 RewriteCond %{REQUEST_URI} ^/public/(.*)$
 RewriteCond %{DOCUMENT_ROOT}/public/%1 -f
-RewriteCond %1 !\.php$ [NC]
+RewriteCond %1 ^app\.php$ [NC]
 RewriteRule ^public/(.*)$ /%1 [L,R=301]
 RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
 RewriteRule ^ public%{REQUEST_URI} [L]
