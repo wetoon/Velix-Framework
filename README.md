@@ -89,6 +89,32 @@ $velix->get('/cookie', function (Response $res) {
 });
 ```
 
+## CORS Configuration
+Velix Framework includes a flexible and configurable CORS system through the `$res->allowCors()` method inside the `Response` class.
+This method supports the following options:
+- **origin** → string (frontend domain)
+- **credentials** → boolean
+- **headers** → string or array
+- **methods** → string or array
+If a value is not provided, Velix will automatically apply default values.
+### ⚙️ Default Configuration
+If no options are provided, the following defaults are used:
+```txt
+origin: *
+credentials: false
+headers: Content-Type, Authorization, X-Requested-With
+methods: GET, POST, PUT, PATCH, DELETE, OPTIONS
+```
+### Usage Examples
+```php
+$velix->get('/cookie', function (Response $res) {
+    $res->allowCors([
+        "origin" => "https://frontend.com",
+        "methods" => ["GET", "POST"]
+    ]).json([...]);
+});
+```
+
 ## Request Object
 The `Request` class makes it easy to access incoming data:
 - `$req->method`: HTTP method (e.g., GET, POST).
@@ -139,4 +165,5 @@ If no route matches, Velix serves `public/index.html` (if it exists) or returns 
 
 ## License
 Velix is open-source under the MIT License.
+
 
