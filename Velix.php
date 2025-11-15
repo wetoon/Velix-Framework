@@ -96,6 +96,43 @@ class Response {
         return $this;
     }
 
+    /**
+     * Configure CORS
+     *
+     * @param array {
+     *     origin?: string,
+     *     credentials?: bool,
+     *     headers?: string|array,
+     *     methods?: string|array
+     * } $config
+     */
+    public function allowCors( $config = array() ) {
+        $defaults = [
+            "origin"      => "*",
+            "credentials" => false,
+            "headers"     => [ "Content-Type", "Authorization", "X-Requested-With" ],
+            "methods"     => [ "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS" ]
+        ];
+        $config = array_merge( $defaults, $config );
+        $this->header( "Access-Control-Allow-Origin", $config['origin'] );
+        if ( $config['credentials'] === true ) {
+            $this->header("Access-Control-Allow-Credentials", "true");
+        }
+        if ( is_array( $config['headers'] ) ) {
+            $headersValue = implode(", ", $config['headers']);
+        } else {
+            $headersValue = $config['headers'];
+        }
+        $this->header( "Access-Control-Allow-Headers", $headersValue );
+        if ( is_array( $config['methods'] ) ) {
+            $methodsValue = implode(", ", $config['methods']);
+        } else {
+            $methodsValue = $config['methods'];
+        }
+        $this->header( "Access-Control-Allow-Methods", $methodsValue );
+        return $this;
+    }    
+
     public function status( $code ) {
         $this->status = $code;
         return $this;
